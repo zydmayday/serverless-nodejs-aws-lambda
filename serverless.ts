@@ -5,7 +5,7 @@ import hello from "@functions/hello";
 const serverlessConfiguration: AWS = {
   service: "serverless-nodejs-aws-lambda",
   frameworkVersion: "3",
-  plugins: ["serverless-esbuild", "serverless-plugin-warmup"],
+  plugins: ["serverless-esbuild", "serverless-plugin-warmup", "serverless-plugin-scripts"],
   provider: {
     name: "aws",
     region: "ap-northeast-1",
@@ -42,6 +42,11 @@ const serverlessConfiguration: AWS = {
         }
       },
     },
+    scripts: {
+      hooks: {
+        'deploy:finalize': 'echo hello world'
+      }
+    }
   },
 };
 
